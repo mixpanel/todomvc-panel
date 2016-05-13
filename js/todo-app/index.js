@@ -34,8 +34,13 @@ document.registerElement('todo-app', class extends Component {
 
   get handlers() {
     return this._handlers || (this._handlers = {
+      deleteTodo: ev => {
+        const ti = Number(ev.target.parentElement.dataset.ti);
+        this.state.todos.splice(ti, 1);
+        this.update({todos: this.state.todos});
+      },
       editTodo: ev => {
-        const ti = Number(ev.target.dataset.ti);
+        const ti = Number(ev.target.parentElement.dataset.ti);
         this.update({editing: ti});
       },
     });

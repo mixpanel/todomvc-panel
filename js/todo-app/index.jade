@@ -18,13 +18,10 @@ section.todoapp
       ul.todo-list
         for todo, ti in todos
           li(class=todo.completed ? 'completed' : ti === editing ? 'editing' : '')
-            .view
+            .view(attributes={'data-ti': ti})
               input.toggle(type="checkbox" checked=todo.completed)
-              label(
-                attributes={'data-ti': ti}
-                ondblclick=$component.handlers.editTodo
-              )= todo.text
-              button.destroy
+              label(ondblclick=$component.handlers.editTodo)= todo.text
+              button.destroy(onclick=$component.handlers.deleteTodo)
             input.edit(value=todo.text)
 
     footer.footer
