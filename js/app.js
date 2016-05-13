@@ -1,6 +1,3 @@
-(function (window) {
-	'use strict';
+import { Component } from 'panel';
 
-	// Your starting point. Enjoy the ride!
-
-})(window);
+console.log('HELLO WORLD');
