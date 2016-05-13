@@ -39,4 +39,4 @@ section.todoapp
         +filterTab('Completed', 'completed')
 
       if todos.filter(t => t.completed).length
-        button.clear-completed Clear completed
+        button.clear-completed(onclick=$component.handlers.clearCompleted) Clear completed

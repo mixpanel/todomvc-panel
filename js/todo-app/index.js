@@ -39,6 +39,9 @@ document.registerElement('todo-app', class extends Component {
 
   get handlers() {
     return this._handlers || (this._handlers = {
+      clearCompleted: () => {
+        this.update({todos: this.state.todos.filter(t => !t.completed)});
+      },
       deleteTodo: ev => {
         this.state.todos.splice(this.state.todos.findIndex(
           t => t.id === Number(ev.target.parentElement.dataset.tid)
