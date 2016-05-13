@@ -36,6 +36,11 @@ document.registerElement('todo-app', class extends Component {
 
   get handlers() {
     return this._handlers || (this._handlers = {
+      changeAll: ev => {
+        const completed = ev.target.checked;
+        this.state.todos.forEach(todo => todo.completed = completed);
+        this.update();
+      },
       checkTodo: ev => {
         this.state.todos[this.findTodoIndex(this.getTodoId(ev))].completed = ev.target.checked;
         this.update();
