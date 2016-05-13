@@ -1,9 +1,8 @@
-mixin filterTab(tab)
-  - lowerTab = tab.toLowerCase()
+mixin filterTab(tab, link)
   li
     a(
-      class=$view === lowerTab ? 'selected' : ''
-      href='#/' + lowerTab
+      class=$view === tab.toLowerCase() ? 'selected' : ''
+      href='#/' + link
     )= tab
 
 section.todoapp
@@ -31,9 +30,9 @@ section.todoapp
         strong= String(itemsLeft)
         | #{' item' + (itemsLeft === 1 ? '' : 's') + ' left'}
       ul.filters
-        +filterTab('All')
-        +filterTab('Active')
-        +filterTab('Completed')
+        +filterTab('All',       ''         )
+        +filterTab('Active',    'active'   )
+        +filterTab('Completed', 'completed')
 
       if todos.filter(t => t.completed).length
         button.clear-completed Clear completed
