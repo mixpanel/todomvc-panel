@@ -19,6 +19,15 @@ document.registerElement('todo-app', class extends Component {
     };
   }
 
+  get $routes() {
+    return {
+      '/':          () => ({$view: 'all'}),
+      '/active':    () => ({$view: 'active'}),
+      '/completed': () => ({$view: 'completed'}),
+      '':           '/',
+    };
+  }
+
   get $template() {
     return template;
   }
