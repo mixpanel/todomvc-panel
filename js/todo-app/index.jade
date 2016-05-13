@@ -23,7 +23,11 @@ section.todoapp
         for todo in $component.helpers.filteredTodos()
           li(class=todo.completed ? 'completed' : todo.id === editing ? 'editing' : '')
             .view(attributes={'data-tid': todo.id})
-              input.toggle(type="checkbox" checked=todo.completed)
+              input.toggle(
+                type="checkbox"
+                checked=todo.completed
+                onchange=$component.handlers.checkTodo
+              )
               label(ondblclick=$component.handlers.editTodo)= todo.text
               button.destroy(onclick=$component.handlers.deleteTodo)
             input.edit(value=todo.text)

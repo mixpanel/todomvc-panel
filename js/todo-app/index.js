@@ -37,20 +37,29 @@ document.registerElement('todo-app', class extends Component {
     return template;
   }
 
+  findTodoIndex(id) {
+    return this.state.todos.findIndex(t => t.id === id);
+  }
+
+  getTodoId(ev) {
+    return Number(ev.target.parentElement.dataset.tid);
+  }
+
   get handlers() {
     return this._handlers || (this._handlers = {
+      checkTodo: ev => {
+        this.state.todos[this.findTodoIndex(this.getTodoId(ev))].completed = ev.target.checked;
+        this.update();
+      },
       clearCompleted: () => {
         this.update({todos: this.state.todos.filter(t => !t.completed)});
       },
       deleteTodo: ev => {
-        this.state.todos.splice(this.state.todos.findIndex(
-          t => t.id === Number(ev.target.parentElement.dataset.tid)
-        ), 1);
-        this.update({todos: this.state.todos});
+        this.state.todos.splice(this.findTodoIndex(this.getTodoId(ev)), 1);
+        this.update();
       },
       editTodo: ev => {
-        const id = Number(ev.target.parentElement.dataset.tid);
-        this.update({editing: id});
+        this.update({editing: this.getTodoId(ev)});
       },
       newTodoKeypress: ev => {
         if (ev.which === ENTER_KEY) {
