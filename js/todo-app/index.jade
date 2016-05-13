@@ -4,7 +4,15 @@ section.todoapp
     h1 todos
     input.new-todo(placeholder="What needs to be done?" autofocus)
 
-  //- This section should be hidden by default and shown when there are todos
-  section.main
-    input.toggle-all(type="checkbox")
-    label(htmlFor="toggle-all") Mark all as complete
+  if todos.length
+    section.main
+      input.toggle-all(type="checkbox")
+      label(htmlFor="toggle-all") Mark all as complete
+      ul.todo-list
+        for todo in todos
+          li(class=todo.completed ? 'completed' : todo.editing ? 'editing' : '')
+            .view
+              input.toggle(type="checkbox" checked=todo.completed)
+              label= todo.text
+              button.destroy
+            input.edit(value="What is this text for")
