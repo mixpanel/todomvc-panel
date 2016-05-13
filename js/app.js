@@ -1,3 +1,3 @@
-import { Component } from 'panel';
+import './todo-app';
 
-console.log('HELLO WORLD');
+document.body.insertBefore(document.createElement('todo-app'), document.body.children[0]);
