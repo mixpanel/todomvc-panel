@@ -31,4 +31,13 @@ document.registerElement('todo-app', class extends Component {
   get $template() {
     return template;
   }
+
+  get handlers() {
+    return this._handlers || (this._handlers = {
+      editTodo: ev => {
+        const todo = this.state.todos[ev.target.dataset.ti];
+        console.log('edit: ', todo);
+      },
+    });
+  }
 });

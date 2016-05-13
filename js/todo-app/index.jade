@@ -20,7 +20,10 @@ section.todoapp
           li(class=todo.completed ? 'completed' : ti === editing ? 'editing' : '')
             .view
               input.toggle(type="checkbox" checked=todo.completed)
-              label= todo.text
+              label(
+                attributes={'data-ti': ti}
+                ondblclick=$component.handlers.editTodo
+              )= todo.text
               button.destroy
             input.edit(value="What is this text for")
 
