@@ -1,3 +1,11 @@
+mixin filterTab(tab)
+  - lowerTab = tab.toLowerCase()
+  li
+    a(
+      class=$view === lowerTab ? 'selected' : ''
+      href='#/' + lowerTab
+    )= tab
+
 section.todoapp
 
   header.header
@@ -10,14 +18,22 @@ section.todoapp
       label(htmlFor="toggle-all") Mark all as complete
       ul.todo-list
         for todo, ti in todos
-          li(class=todo.completed ? 'completed' : ti == editing ? 'editing' : '')
+          li(class=todo.completed ? 'completed' : ti === editing ? 'editing' : '')
             .view
               input.toggle(type="checkbox" checked=todo.completed)
               label= todo.text
               button.destroy
             input.edit(value="What is this text for")
+
     footer.footer
       span.todo-count
         - itemsLeft = todos.filter(t => !t.completed).length
         strong= String(itemsLeft)
         | #{' item' + (itemsLeft === 1 ? '' : 's') + ' left'}
+      ul.filters
+        +filterTab('All')
+        +filterTab('Active')
+        +filterTab('Completed')
+
+      if todos.filter(t => t.completed).length
+        button.clear-completed Clear completed

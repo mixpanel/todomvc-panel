@@ -5,6 +5,7 @@ import template from './index.jade';
 document.registerElement('todo-app', class extends Component {
   get $defaultState() {
     return {
+      $view: 'all',
       todos: [
         {
           text: 'Taste JavaScript',
