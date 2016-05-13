@@ -25,7 +25,7 @@ section.todoapp
                 ondblclick=$component.handlers.editTodo
               )= todo.text
               button.destroy
-            input.edit(value="What is this text for")
+            input.edit(value=todo.text)
 
     footer.footer
       span.todo-count

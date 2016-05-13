@@ -35,8 +35,8 @@ document.registerElement('todo-app', class extends Component {
   get handlers() {
     return this._handlers || (this._handlers = {
       editTodo: ev => {
-        const todo = this.state.todos[ev.target.dataset.ti];
-        console.log('edit: ', todo);
+        const ti = Number(ev.target.dataset.ti);
+        this.update({editing: ti});
       },
     });
   }
