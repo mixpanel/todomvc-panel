@@ -8,19 +8,8 @@ let todoId = 1;
 document.registerElement('todo-app', class extends Component {
   get $defaultState() {
     return {
+      todos: [],
       $view: 'all',
-      todos: [
-        {
-          id: 5,
-          text: 'Taste JavaScript',
-          completed: true,
-        },
-        {
-          id: 6,
-          text: 'Buy a unicorn',
-          completed: false,
-        },
-      ],
     };
   }
 
