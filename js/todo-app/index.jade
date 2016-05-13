@@ -16,9 +16,9 @@ section.todoapp
       input.toggle-all(type="checkbox")
       label(htmlFor="toggle-all") Mark all as complete
       ul.todo-list
-        for todo, ti in todos
-          li(class=todo.completed ? 'completed' : ti === editing ? 'editing' : '')
-            .view(attributes={'data-ti': ti})
+        for todo in $component.helpers.filteredTodos()
+          li(class=todo.completed ? 'completed' : todo.id === editing ? 'editing' : '')
+            .view(attributes={'data-tid': todo.id})
               input.toggle(type="checkbox" checked=todo.completed)
               label(ondblclick=$component.handlers.editTodo)= todo.text
               button.destroy(onclick=$component.handlers.deleteTodo)
