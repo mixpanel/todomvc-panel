@@ -5,8 +5,6 @@ import './todo-item';
 
 import template from './index.jade';
 
-let todoId = 1;
-
 document.registerElement('todo-app', class extends Component {
   get $defaultState() {
     return {
@@ -27,6 +25,10 @@ document.registerElement('todo-app', class extends Component {
     return template;
   }
 
+  nextTodoId() {
+    return ++this.todoId || (this.todoId = 1);
+  }
+
   get handlers() {
     return this._handlers || (this._handlers = {
       changeAll: ev => {
@@ -42,7 +44,7 @@ document.registerElement('todo-app', class extends Component {
           const text = ev.target.value.trim();
           if (text) {
             ev.target.value = '';
-            this.update({todos: this.state.todos.concat({id: todoId++, text})});
+            this.update({todos: this.state.todos.concat({id: this.nextTodoId(), text})});
           }
         }
       },
