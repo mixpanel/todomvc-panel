@@ -1,10 +1,10 @@
 import { Component } from 'panel';
 
+import { ENTER_KEY } from '../constants';
 import './todo-item';
 
 import template from './index.jade';
 
-const ENTER_KEY = 13;
 let todoId = 1;
 
 document.registerElement('todo-app', class extends Component {
@@ -38,7 +38,7 @@ document.registerElement('todo-app', class extends Component {
       clearCompleted: () => {
         this.update({todos: this.state.todos.filter(t => !t.completed)});
       },
-      newTodoKeypress: ev => {
+      newTodoKeyup: ev => {
         if (ev.which === ENTER_KEY) {
           const text = ev.target.value.trim();
           if (text) {

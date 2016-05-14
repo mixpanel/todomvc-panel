@@ -1,8 +1,8 @@
 import { Component } from 'panel';
 
-import template from './index.jade';
+import { ENTER_KEY, ESCAPE_KEY } from '../../constants';
 
-const ENTER_KEY = 13;
+import template from './index.jade';
 
 document.registerElement('todo-item', class extends Component {
   get $template() {
@@ -25,14 +25,18 @@ document.registerElement('todo-item', class extends Component {
     return this.state.todos.findIndex(t => t.id === this.todoId);
   }
 
+  stopEditing() {
+    if (this.state.editing === this.todoId) {
+      this.state.editing = null;
+    }
+    this.update();
+  }
+
   updateText() {
     const text = this.inputEl.value.trim();
     if (text) {
       this.todo.text = text;
-      if (this.state.editing === this.todoId) {
-        this.state.editing = null;
-      }
-      this.update();
+      this.stopEditing();
     } else {
       this.handlers.deleteTodo();
     }
@@ -52,9 +56,15 @@ document.registerElement('todo-item', class extends Component {
         this.update({editing: this.todoId});
         window.requestAnimationFrame(() => this.inputEl.focus());
       },
-      editTodoKeypress: ev => {
-        if (ev.which === ENTER_KEY) {
-          this.updateText();
+      editTodoKeyup: ev => {
+        switch(ev.which) {
+          case ENTER_KEY:
+            this.updateText();
+            break;
+          case ESCAPE_KEY:
+            this.inputEl.value = this.todo.text;
+            this.stopEditing();
+            break;
         }
       },
       updateTodo: () => {

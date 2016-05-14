@@ -12,6 +12,6 @@ div
         button.destroy(onclick=$component.handlers.deleteTodo)
       input.edit(
         onblur=$component.handlers.updateTodo
-        onkeypress=$component.handlers.editTodoKeypress
+        onkeyup=$component.handlers.editTodoKeyup
         value=todo.text
       )
