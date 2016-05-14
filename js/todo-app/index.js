@@ -1,5 +1,7 @@
 import { Component } from 'panel';
 
+import './todo-item';
+
 import template from './index.jade';
 
 const ENTER_KEY = 13;
@@ -26,14 +28,6 @@ document.registerElement('todo-app', class extends Component {
     return template;
   }
 
-  findTodoIndex(id) {
-    return this.state.todos.findIndex(t => t.id === id);
-  }
-
-  getTodoId(ev) {
-    return Number(ev.target.parentElement.dataset.tid);
-  }
-
   get handlers() {
     return this._handlers || (this._handlers = {
       changeAll: ev => {
@@ -41,19 +35,8 @@ document.registerElement('todo-app', class extends Component {
         this.state.todos.forEach(todo => todo.completed = completed);
         this.update();
       },
-      checkTodo: ev => {
-        this.state.todos[this.findTodoIndex(this.getTodoId(ev))].completed = ev.target.checked;
-        this.update();
-      },
       clearCompleted: () => {
         this.update({todos: this.state.todos.filter(t => !t.completed)});
-      },
-      deleteTodo: ev => {
-        this.state.todos.splice(this.findTodoIndex(this.getTodoId(ev)), 1);
-        this.update();
-      },
-      editTodo: ev => {
-        this.update({editing: this.getTodoId(ev)});
       },
       newTodoKeypress: ev => {
         if (ev.which === ENTER_KEY) {

@@ -1,0 +1,17 @@
+- todo = $component.todo
+div
+  if todo
+    li(class=todo.completed ? 'completed' : todo.id === editing ? 'editing' : '')
+      .view
+        input.toggle(
+          type="checkbox"
+          checked=todo.completed
+          onchange=$component.handlers.checkTodo
+        )
+        label(ondblclick=$component.handlers.editTodo)= todo.text
+        button.destroy(onclick=$component.handlers.deleteTodo)
+      input.edit(
+        onblur=$component.handlers.updateTodo
+        onkeypress=$component.handlers.editTodoKeypress
+        value=todo.text
+      )
