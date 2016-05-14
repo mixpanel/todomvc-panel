@@ -33,6 +33,8 @@ document.registerElement('todo-item', class extends Component {
         this.state.editing = null;
       }
       this.update();
+    } else {
+      this.handlers.deleteTodo();
     }
   }
 
@@ -42,11 +44,11 @@ document.registerElement('todo-item', class extends Component {
         this.todo.completed = ev.target.checked;
         this.update();
       },
-      deleteTodo: ev => {
+      deleteTodo: () => {
         this.state.todos.splice(this.todoIndex, 1);
         this.update();
       },
-      editTodo: ev => {
+      editTodo: () => {
         this.update({editing: this.todoId});
         window.requestAnimationFrame(() => this.inputEl.focus());
       },
