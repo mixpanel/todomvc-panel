@@ -17,10 +17,9 @@ document.registerElement('todo-app', class extends Component {
 
   get $routes() {
     return {
-      '/':          () => ({$view: 'all'}),
+      '(/)':        () => ({$view: 'all'}),
       '/active':    () => ({$view: 'active'}),
       '/completed': () => ({$view: 'completed'}),
-      '':           '/',
     };
   }
 
