@@ -17,7 +17,11 @@ section.todoapp
 
   if todos.length
     section.main
-      input.toggle-all(type="checkbox" onchange=$component.handlers.changeAll)
+      input.toggle-all(
+        type="checkbox"
+        checked=!todos.filter(t => !t.completed).length
+        onchange=$component.handlers.changeAll
+      )
       label(htmlFor="toggle-all") Mark all as complete
       ul.todo-list
         for todo in $component.helpers.filteredTodos()
