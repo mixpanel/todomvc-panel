@@ -8,10 +8,10 @@ div
           checked=todo.completed
           onchange=$component.handlers.checkTodo
         )
-        label(ondblclick=$component.handlers.editTodo)= todo.text
+        label(ondblclick=$component.handlers.editTodo)= todo.title
         button.destroy(onclick=$component.handlers.deleteTodo)
       input.edit(
         onblur=$component.handlers.updateTodo
         onkeyup=$component.handlers.editTodoKeyup
-        value=todo.text
+        value=todo.title
       )

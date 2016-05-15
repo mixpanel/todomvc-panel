@@ -56,10 +56,10 @@ document.registerElement('todo-app', class extends Component {
       },
       newTodoKeyup: ev => {
         if (ev.which === ENTER_KEY) {
-          const text = ev.target.value.trim();
-          if (text) {
+          const title = ev.target.value.trim();
+          if (title) {
             ev.target.value = '';
-            this.update({todos: this.state.todos.concat({id: this.nextTodoId(), text})});
+            this.update({todos: this.state.todos.concat({id: this.nextTodoId(), title})});
           }
         }
       },

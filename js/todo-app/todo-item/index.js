@@ -33,9 +33,9 @@ document.registerElement('todo-item', class extends Component {
   }
 
   updateText() {
-    const text = this.inputEl.value.trim();
-    if (text) {
-      this.todo.text = text;
+    const title = this.inputEl.value.trim();
+    if (title) {
+      this.todo.title = title;
       this.stopEditing();
     } else {
       this.handlers.deleteTodo();
@@ -62,7 +62,7 @@ document.registerElement('todo-item', class extends Component {
             this.updateText();
             break;
           case ESCAPE_KEY:
-            this.inputEl.value = this.todo.text;
+            this.inputEl.value = this.todo.title;
             this.stopEditing();
             break;
         }
