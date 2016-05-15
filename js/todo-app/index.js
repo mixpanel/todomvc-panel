@@ -6,6 +6,16 @@ import './todo-item';
 import template from './index.jade';
 
 document.registerElement('todo-app', class extends Component {
+  createdCallback() {
+    super.createdCallback(...arguments);
+    let todos = window.localStorage.getItem('todos-panel');
+    if (todos) {
+      todos = JSON.parse(todos);
+      this.state = {todos};
+      this.todoId = Math.max(1, Math.max(...todos.map(t => t.id)) + 1);
+    }
+  }
+
   get $defaultState() {
     return {
       todos: [],
@@ -23,6 +33,11 @@ document.registerElement('todo-app', class extends Component {
 
   get $template() {
     return template;
+  }
+
+  update() {
+    super.update(...arguments);
+    window.localStorage.setItem('todos-panel', JSON.stringify(this.state.todos));
   }
 
   nextTodoId() {
