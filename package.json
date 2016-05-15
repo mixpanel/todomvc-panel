@@ -6,7 +6,7 @@
   },
   "private": true,
   "dependencies": {
-    "panel": "0.6.0",
+    "panel": "0.6.1",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0",
     "virtual-dom": "2.1.1",

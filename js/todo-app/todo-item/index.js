@@ -42,8 +42,8 @@ document.registerElement('todo-item', class extends Component {
     }
   }
 
-  get handlers() {
-    return this._handlers || (this._handlers = {
+  get $helpers() {
+    return {
       checkTodo: ev => {
         this.todo.completed = ev.target.checked;
         this.update();
@@ -70,6 +70,6 @@ document.registerElement('todo-item', class extends Component {
       updateTodo: () => {
         this.updateText();
       },
-    });
+    };
   }
 });

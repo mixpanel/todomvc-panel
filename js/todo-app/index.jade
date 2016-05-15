@@ -11,7 +11,7 @@ section.todoapp
     h1 todos
     input.new-todo(
       autofocus
-      onkeyup=$component.handlers.newTodoKeyup
+      onkeyup=$helpers.newTodoKeyup
       placeholder="What needs to be done?"
     )
 
@@ -20,11 +20,11 @@ section.todoapp
       input.toggle-all(
         type="checkbox"
         checked=!todos.filter(t => !t.completed).length
-        onchange=$component.handlers.changeAll
+        onchange=$helpers.changeAll
       )
       label(htmlFor="toggle-all") Mark all as complete
       ul.todo-list
-        for todo in $component.helpers.filteredTodos()
+        for todo in $helpers.filteredTodos()
           div= $component.child('todo-item', {attributes: {'data-tid': todo.id}})
 
     footer.footer
@@ -38,4 +38,4 @@ section.todoapp
         +filterTab('Completed', 'completed')
 
       if todos.filter(t => t.completed).length
-        button.clear-completed(onclick=$component.handlers.clearCompleted) Clear completed
+        button.clear-completed(onclick=$helpers.clearCompleted) Clear completed

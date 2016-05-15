@@ -44,8 +44,8 @@ document.registerElement('todo-app', class extends Component {
     return ++this.todoId || (this.todoId = 1);
   }
 
-  get handlers() {
-    return this._handlers || (this._handlers = {
+  get $helpers() {
+    return {
       changeAll: ev => {
         const completed = ev.target.checked;
         this.state.todos.forEach(todo => todo.completed = completed);
@@ -54,20 +54,6 @@ document.registerElement('todo-app', class extends Component {
       clearCompleted: () => {
         this.update({todos: this.state.todos.filter(t => !t.completed)});
       },
-      newTodoKeyup: ev => {
-        if (ev.which === ENTER_KEY) {
-          const title = ev.target.value.trim();
-          if (title) {
-            ev.target.value = '';
-            this.update({todos: this.state.todos.concat({id: this.nextTodoId(), title})});
-          }
-        }
-      },
-    });
-  }
-
-  get helpers() {
-    return this._helpers || (this._helpers = {
       filteredTodos: () => {
         switch(this.state.$view) {
           case 'active':
@@ -78,6 +64,15 @@ document.registerElement('todo-app', class extends Component {
             return this.state.todos;
         }
       },
-    });
+      newTodoKeyup: ev => {
+        if (ev.which === ENTER_KEY) {
+          const title = ev.target.value.trim();
+          if (title) {
+            ev.target.value = '';
+            this.update({todos: this.state.todos.concat({id: this.nextTodoId(), title})});
+          }
+        }
+      },
+    };
   }
 });

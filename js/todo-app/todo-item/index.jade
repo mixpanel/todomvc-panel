@@ -6,12 +6,12 @@ div
         input.toggle(
           type="checkbox"
           checked=todo.completed
-          onchange=$component.handlers.checkTodo
+          onchange=$helpers.checkTodo
         )
-        label(ondblclick=$component.handlers.editTodo)= todo.title
-        button.destroy(onclick=$component.handlers.deleteTodo)
+        label(ondblclick=$helpers.editTodo)= todo.title
+        button.destroy(onclick=$helpers.deleteTodo)
       input.edit(
-        onblur=$component.handlers.updateTodo
-        onkeyup=$component.handlers.editTodoKeyup
+        onblur=$helpers.updateTodo
+        onkeyup=$helpers.editTodoKeyup
         value=todo.title
       )
