@@ -5,8 +5,39 @@ import { ENTER_KEY, ESCAPE_KEY } from '../../constants';
 import template from './index.jade';
 
 document.registerElement('todo-item', class extends Component {
-  get $template() {
-    return template;
+  get config() {
+    return {
+      template,
+
+      helpers: {
+        checkTodo: ev => {
+          this.todo.completed = ev.target.checked;
+          this.update();
+        },
+        deleteTodo: () => {
+          this.state.todos.splice(this.todoIndex, 1);
+          this.update();
+        },
+        editTodo: () => {
+          this.update({editing: this.todoId});
+          window.requestAnimationFrame(() => this.inputEl.focus());
+        },
+        editTodoKeyup: ev => {
+          switch(ev.which) {
+            case ENTER_KEY:
+              this.updateText();
+              break;
+            case ESCAPE_KEY:
+              this.inputEl.value = this.todo.title;
+              this.stopEditing();
+              break;
+          }
+        },
+        updateTodo: () => {
+          this.updateText();
+        },
+      },
+    };
   }
 
   get inputEl() {
@@ -40,36 +71,5 @@ document.registerElement('todo-item', class extends Component {
     } else {
       this.handlers.deleteTodo();
     }
-  }
-
-  get $helpers() {
-    return {
-      checkTodo: ev => {
-        this.todo.completed = ev.target.checked;
-        this.update();
-      },
-      deleteTodo: () => {
-        this.state.todos.splice(this.todoIndex, 1);
-        this.update();
-      },
-      editTodo: () => {
-        this.update({editing: this.todoId});
-        window.requestAnimationFrame(() => this.inputEl.focus());
-      },
-      editTodoKeyup: ev => {
-        switch(ev.which) {
-          case ENTER_KEY:
-            this.updateText();
-            break;
-          case ESCAPE_KEY:
-            this.inputEl.value = this.todo.title;
-            this.stopEditing();
-            break;
-        }
-      },
-      updateTodo: () => {
-        this.updateText();
-      },
-    };
   }
 });
