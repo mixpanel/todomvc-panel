@@ -22,10 +22,10 @@ section.todoapp
         checked=!todos.filter(t => !t.completed).length
         onchange=$helpers.changeAll
       )
-      label(htmlFor="toggle-all") Mark all as complete
+      label(for="toggle-all") Mark all as complete
       ul.todo-list
         for todo in $helpers.filteredTodos()
-          div= $component.child('todo-item', {attributes: {'data-tid': todo.id}})
+          = $component.child('todo-item', {attributes: {'data-tid': todo.id}})
 
     footer.footer
       span.todo-count
