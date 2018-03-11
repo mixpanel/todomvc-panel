@@ -1,30 +1,36 @@
-var path = require('path');
+const path = require('path');
 
-var webpackConfig = {
+const babelLoader = {
+  loader: `babel-loader`,
+  options: {
+    presets: [`env`],
+  },
+};
+
+const webpackConfig = {
   entry: './js/app.js',
   output: {
     filename: 'build.js',
     path: path.join(__dirname, 'js')
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jade$/,
         exclude: /node_modules/,
-        loader: 'virtual-jade',
+        use: [
+          babelLoader,
+          `virtual-jade-loader?vdom=snabbdom&runtime=var h = require("panel").h;`,
+        ],
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-            presets: ['es2015'],
-        },
+        use: [
+          babelLoader,
+        ],
       },
     ],
-  },
-  resolveLoader: {
-    root: path.join(__dirname, 'node_modules'),
   },
 };
 
