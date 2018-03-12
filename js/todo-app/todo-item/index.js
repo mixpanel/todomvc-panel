@@ -4,7 +4,7 @@ import { ENTER_KEY, ESCAPE_KEY } from '../../constants';
 
 import template from './index.jade';
 
-document.registerElement('todo-item', class extends Component {
+customElements.define('todo-item', class extends Component {
   get config() {
     return {
       template,

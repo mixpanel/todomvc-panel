@@ -5,7 +5,7 @@ import './todo-item';
 
 import template from './index.jade';
 
-document.registerElement('todo-app', class extends Component {
+customElements.define('todo-app', class extends Component {
   get config() {
     return {
       defaultState: {
@@ -53,8 +53,8 @@ document.registerElement('todo-app', class extends Component {
     };
   }
 
-  createdCallback() {
-    super.createdCallback(...arguments);
+  constructor() {
+    super(...arguments);
     let todos = window.localStorage.getItem('todos-panel');
     if (todos) {
       todos = JSON.parse(todos);

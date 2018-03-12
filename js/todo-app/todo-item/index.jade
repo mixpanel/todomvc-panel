@@ -1,17 +1,21 @@
-- todo = $component.todo
+- const todo = $component.todo;
 div
   if todo
-    li(class=todo.completed ? 'completed' : todo.id === editing ? 'editing' : '')
+    li(class={completed: todo.completed, editing: todo.id === editing})
       .view
         input.toggle(
-          type="checkbox"
-          checked=todo.completed
-          onchange=$helpers.checkTodo
+          attrs={
+            type: `checkbox`,
+            checked: todo.completed,
+          }
+          on={change: $helpers.checkTodo},
         )
-        label(ondblclick=$helpers.editTodo)= todo.title
-        button.destroy(onclick=$helpers.deleteTodo)
+        label(on={dblclick: $helpers.editTodo})= todo.title
+        button.destroy(on={click: $helpers.deleteTodo})
       input.edit(
-        onblur=$helpers.updateTodo
-        onkeyup=$helpers.editTodoKeyup
-        value=todo.title
+        props={value: todo.title}
+        on={
+          blur: $helpers.updateTodo,
+          keyup: $helpers.editTodoKeyup,
+        }
       )
