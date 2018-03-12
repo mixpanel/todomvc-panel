@@ -1,7 +1,8 @@
 {
   "scripts": {
     "build": "webpack",
-    "start": "python -m SimpleHTTPServer",
+    "simple": "python -m SimpleHTTPServer",
+    "start": "webpack-dev-server --progress --colors",
     "watch": "webpack --progress --colors --watch"
   },
   "private": true,
