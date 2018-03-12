@@ -20,7 +20,13 @@ const webpackConfig = {
         exclude: /node_modules/,
         use: [
           babelLoader,
-          `virtual-jade-loader?vdom=snabbdom&runtime=var h = require("panel").h;`,
+          {
+            loader: `virtual-jade-loader`,
+            options: {
+              vdom: `snabbdom`,
+              runtime: `const h = require("panel").h;`,
+            }
+          },
         ],
       },
       {
