@@ -10,7 +10,7 @@ customElements.define('todo-app', class extends Component {
     return {
       defaultState: {
         todos: [],
-        $view: 'all',
+        $view: `all`,
       },
 
       routes: {
@@ -32,9 +32,9 @@ customElements.define('todo-app', class extends Component {
         },
         filteredTodos: () => {
           switch(this.state.$view) {
-            case 'active':
+            case `active`:
               return this.state.todos.filter(t => !t.completed);
-            case 'completed':
+            case `completed`:
               return this.state.todos.filter(t => t.completed);
             default:
               return this.state.todos;
@@ -44,7 +44,7 @@ customElements.define('todo-app', class extends Component {
           if (ev.which === ENTER_KEY) {
             const title = ev.target.value.trim();
             if (title) {
-              ev.target.value = '';
+              ev.target.value = ``;
               this.update({todos: this.state.todos.concat({id: this.nextTodoId(), title})});
             }
           }
@@ -55,7 +55,7 @@ customElements.define('todo-app', class extends Component {
 
   constructor() {
     super(...arguments);
-    let todos = window.localStorage.getItem('todos-panel');
+    let todos = window.localStorage.getItem(`todos-panel`);
     if (todos) {
       todos = JSON.parse(todos);
       this.state = {todos};
@@ -65,7 +65,7 @@ customElements.define('todo-app', class extends Component {
 
   update() {
     super.update(...arguments);
-    window.localStorage.setItem('todos-panel', JSON.stringify(this.state.todos));
+    window.localStorage.setItem(`todos-panel`, JSON.stringify(this.state.todos));
   }
 
   nextTodoId() {
