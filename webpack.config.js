@@ -8,10 +8,13 @@ const babelLoader = {
 };
 
 const webpackConfig = {
+  mode: process.env.NODE_ENV || `development`,
+
   entry: './js/app.js',
   output: {
     filename: 'build.js',
-    path: path.join(__dirname, 'js')
+    path: path.join(__dirname, 'js'),
+    publicPath: 'js',
   },
   module: {
     rules: [
