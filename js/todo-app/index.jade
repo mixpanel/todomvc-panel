@@ -5,6 +5,7 @@ mixin filterTab(tab, link)
       attrs={href: `#/${link}`}
     )= tab
 
+
 section.todoapp
 
   header.header
@@ -29,7 +30,7 @@ section.todoapp
       )
       label(attrs={for: `toggle-all`}) Mark all as complete
       ul.todo-list
-        for todo in $helpers.filteredTodos()
+        each todo in $helpers.filteredTodos()
           = $component.child(`todo-item`, {dataset: {tid: todo.id}})
 
     footer.footer
