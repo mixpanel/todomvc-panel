@@ -1,5 +1,8 @@
 const path = require('path');
 
+// set to 'poll' for polling instead of inotify/fsevents
+const {WEBPACK_WATCH_METHOD} = process.env;
+
 const babelLoader = {
   loader: `babel-loader`,
   options: {
@@ -42,5 +45,12 @@ const webpackConfig = {
     ],
   },
 };
+
+if (WEBPACK_WATCH_METHOD === `poll`) {
+  webpackConfig.watchOptions = {
+    aggregateTimeout: 1000,
+    poll: 3000,
+  };
+}
 
 module.exports = webpackConfig;
