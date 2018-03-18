@@ -33,15 +33,12 @@ customElements.define('todo-item', class extends Component {
               break;
           }
         },
+        setInputEl: el => this.inputEl = el,
         updateTodo: () => {
           this.updateText();
         },
       },
     };
-  }
-
-  get inputEl() {
-    return this.getElementsByClassName('edit')[0];
   }
 
   get todo() {
@@ -69,7 +66,7 @@ customElements.define('todo-item', class extends Component {
       this.todo.title = title;
       this.stopEditing();
     } else {
-      this.handlers.deleteTodo();
+      this.helpers.deleteTodo();
     }
   }
 });

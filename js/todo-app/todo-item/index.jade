@@ -18,4 +18,7 @@ div
           blur: $helpers.updateTodo,
           keyup: $helpers.editTodoKeyup,
         }
+        hook={
+          insert: vnode => $helpers.setInputEl(vnode.elm),
+        }
       )
