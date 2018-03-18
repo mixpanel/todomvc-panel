@@ -50,6 +50,10 @@ customElements.define('todo-app', class extends Component {
           }
         },
       },
+
+      hooks: {
+        postUpdate: () => localStorage.setItem(`todos-panel`, JSON.stringify(this.state.todos)),
+      },
     };
   }
 
@@ -61,11 +65,6 @@ customElements.define('todo-app', class extends Component {
       this.state = {todos};
       this.todoId = Math.max(1, Math.max(...todos.map(t => t.id)) + 1);
     }
-  }
-
-  update() {
-    super.update(...arguments);
-    window.localStorage.setItem(`todos-panel`, JSON.stringify(this.state.todos));
   }
 
   nextTodoId() {
