@@ -24,8 +24,7 @@ customElements.define('todo-app', class extends Component {
       helpers: {
         changeAll: ev => {
           const completed = ev.target.checked;
-          this.state.todos.forEach(todo => todo.completed = completed);
-          this.update();
+          this.update({todos: this.state.todos.map(t => Object.assign(t, {completed}))});
         },
         clearCompleted: () => {
           this.update({todos: this.state.todos.filter(t => !t.completed)});
