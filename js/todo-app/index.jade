@@ -21,7 +21,7 @@ section.todoapp
   if todos.length
     - const numItemsLeft = todos.filter(t => !t.completed).length;
     section.main
-      input.toggle-all(
+      input#toggle-all.toggle-all(
         attrs={
           type: `checkbox`,
           checked: !numItemsLeft,
