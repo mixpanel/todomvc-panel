@@ -1,19 +1,20 @@
-# TodoMVC App Template
+# Panel • [TodoMVC](http://todomvc.com)
 
-> Template used for creating [TodoMVC](http://todomvc.com) apps
-
-![](https://github.com/tastejs/todomvc-app-css/raw/master/screenshot.png)
+> Panel makes [Web Components](https://webcomponents.org/) suitable for constructing full web UIs, not just low-level building blocks. It does so by providing an easy-to-use state management and rendering layer built on Virtual DOM (the basis of the core rendering technology of React). Through use of the Snabbdom Virtual DOM library and first-class support for multiple templating formats, Panel offers simple yet powerful APIs for rendering, animation, styling, and DOM lifecycle.
 
 
-## Getting started
+## Resources
 
-- Read the [Application Specification](https://github.com/tastejs/todomvc/blob/master/app-spec.md) before touching the template.
-
-- Delete this file and rename `app-readme.md` to `readme.md` and fill it out.
-
-- Clone this repo and install the dependencies with [npm](https://npmjs.com) by running: `npm install`.
+- [Website](https://github.com/mixpanel/panel)
+- [Documentation](https://mixpanel.github.io/panel/)
+- [Used by](https://mixpanel.com)
 
 
-## License
+## Implementation
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" rel="dct:type">work</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://sindresorhus.com" property="cc:attributionName" rel="cc:attributionURL">TasteJS</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a>.
+The main architectural decisions of this TodoMVC implementation center around how to decompose the UI effectively into a component hierarchy. The approach taken here avoids breaking out components purely for the sake of organization - e.g., the UI header is inlined in the main app component rather than a separate `<todo-header>`, because there's no functional benefit - but instead simply divides the app into the main UI (`<todo-app>`) and the individual items (`<todo-item>`). Individual `<todo-item>`s share a single central state store with the main app, making state updates seamless and easy across the app. As TodoMVC is a pretty simple app with a tiny state structure (list of todos, current view, todo currently being edited), the example doesn't integrate Redux or any other dedicated state management solution; straightforward `update()` calls to change the state object and re-render are sufficient for this case.
+
+
+## Credit
+
+Created by [Ted Dumitrescu](http://cmme.org/tdumitrescu/who/)
