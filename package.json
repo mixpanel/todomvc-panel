@@ -1,6 +1,8 @@
 {
   "scripts": {
     "build": "webpack",
+    "build-static": "webpack && node build-static.js",
+    "publish": "npm run build-static",
     "simple": "python -m SimpleHTTPServer",
     "start": "webpack-dev-server --progress --colors",
     "watch": "webpack --progress --colors --watch"
@@ -17,11 +19,13 @@
     "babel-core": "6.26.0",
     "babel-loader": "7.1.1",
     "babel-preset-env": "1.6.1",
+    "fs-extra": "5.0.0",
+    "gh-pages": "1.1.0",
     "js-beautify": "1.6.2",
     "virtual-jade": "0.9.1",
     "virtual-jade-loader": "1.0.0",
     "webpack": "4.1.1",
-    "webpack-cli": "^2.0.11",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-cli": "2.0.11",
+    "webpack-dev-server": "3.1.1"
   }
 }
