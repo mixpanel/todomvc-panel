@@ -2,7 +2,7 @@
   "scripts": {
     "build": "webpack",
     "build-static": "webpack && node build-static.js",
-    "publish": "npm run build-static",
+    "publish": "npm run build-static && node push-static.js",
     "simple": "python -m SimpleHTTPServer",
     "start": "webpack-dev-server --progress --colors",
     "watch": "webpack --progress --colors --watch"
