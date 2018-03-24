@@ -14,6 +14,8 @@
 
 The main architectural decisions of this TodoMVC implementation center around how to decompose the UI effectively into a component hierarchy. The approach taken here avoids breaking out components purely for the sake of organization - e.g., the UI header is inlined in the main app component rather than a separate `<todo-header>`, because there's no functional benefit - but instead simply divides the app into the main UI (`<todo-app>`) and the individual items (`<todo-item>`). Individual `<todo-item>`s share a single central state store with the main app, making state updates seamless and easy across the app. As TodoMVC is a pretty simple app with a tiny state structure (list of todos, current view, todo currently being edited), the example doesn't integrate Redux or any other dedicated state management solution; straightforward `update()` calls to change the state object and re-render are sufficient for this case.
 
+The `title` field in the state store is unnecessary and has been included just for purposes of demonstration (e.g., open dev tools and run `document.querySelector('todo-app').update({title: 'Hi world!'})` to change the UI title from "todos").
+
 
 ## Credit
 

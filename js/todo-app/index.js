@@ -9,6 +9,7 @@ customElements.define('todo-app', class extends Component {
   get config() {
     return {
       defaultState: {
+        title: `todos`,  // superfluous, just for demonstration
         todos: [],
         $view: `all`,
       },
